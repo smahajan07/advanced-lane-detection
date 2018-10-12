@@ -33,10 +33,25 @@ int main()
   grayImg = obj.grayImage(undImg);
   // call detect edges
   edgeImg = obj.detectEdges(grayImg);
-  namedWindow("Edges", WINDOW_AUTOSIZE);
-  imshow("Edges", edgeImg);
+  // call extract ROI
+  Mat roiImg;
+  int h = orgImg.rows, w = orgImg.cols;
+  Rect rectRoi(0.2 * w, h / 2, 0.6 * w, h / 2);
+  roiImg = obj.extractROI(edgeImg, rectRoi);
+  namedWindow("ROI image", WINDOW_AUTOSIZE);
+  imshow("ROI image", roiImg);
   // wait for key press and then close window
   waitKey(0);
+  // call perspective transform
+  Mat warpedImg;
+  warpedImg = obj.perspectiveTransform(edgeImg);
+  namedWindow("Warped image", WINDOW_AUTOSIZE);
+  imshow("Warped image", warpedImg);
+  // wait for key press and then close window
+  waitKey(0);
+  // call hough lines
+  std::vector<cv::Vec4i> lines;
+  lines = obj.detectLanes(warpedImg);
 
   return 0;
 }
