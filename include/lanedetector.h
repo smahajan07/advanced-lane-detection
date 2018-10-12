@@ -7,7 +7,8 @@
 
 class lanedetector {
  private:
-
+  bool leftLane;
+  bool rightLane;
  public:
   lanedetector();
   cv::Mat undistortImage(cv::Mat, cv::Mat, cv::Mat);
@@ -15,8 +16,16 @@ class lanedetector {
   cv::Mat grayImage(cv::Mat);
   cv::Mat detectEdges(cv::Mat);
   cv::Mat extractROI(cv::Mat, cv::Rect);
+  cv::Mat createMask(cv::Mat);
   cv::Mat perspectiveTransform(cv::Mat);
   std::vector<cv::Vec4i> detectLanes(cv::Mat);
+  cv::Mat drawLines(cv::Mat, std::vector<cv::Vec4i>);
+  cv::Mat drawLines(cv::Mat, std::vector<cv::Vec4i>, std::vector<cv::Vec4i>);
+  std::vector<std::vector<cv::Vec4i>> sortLanes(std::vector<cv::Vec4i>,
+                                                cv::Mat);
+  std::vector<cv::Point> computeFitLine(std::vector<std::vector<cv::Vec4i>>,
+                                        cv::Mat);
+  std::string predictTurn();
 
 };
 
