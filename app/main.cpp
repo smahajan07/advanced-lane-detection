@@ -1,3 +1,35 @@
+/** MIT License
+
+ Copyright (c) 2018 Sarthak Mahajan
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ */
+
+/**
+ *@copyright Copyright (c) 2018 Sarthak Mahajan
+ *@file main.cpp
+ *@author Sarthak Mahajan
+ *@brief main block which reads a video source and detects lanes from it
+ *@brief by creating an object of the lanedetector class and calling the
+ *@brief methods that facilitate this process
+ */
+
 #include <iostream>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -41,8 +73,10 @@ int main()
     // actions
     // call undistort func
     undImg = obj.undistortImage(orgImg, cameraMatrix, distCoeff);
+    // call pre process Image func
+    ppImg = obj.preprocessImage(undImg);
     // call gray Image func
-    grayImg = obj.grayImage(undImg);
+    grayImg = obj.grayImage(ppImg);
     // call detect edges
     edgeImg = obj.detectEdges(grayImg);
     // call create mask
