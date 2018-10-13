@@ -1,8 +1,14 @@
 #include "../include/lanedetector.h"
 
 lanedetector::lanedetector() {
-  leftLane = false;
-  rightLane = false;
+  leftLaneF = false;
+  rightLaneF = false;
+  leftSlope = 0;
+  rightSlope = 0;
+  leftBias = cv::Point(0, 0);
+  rightBias = cv::Point(0, 0);
+  imgCenter = 0;
+  vanPtThresh = 12;
 }
 
 cv::Mat lanedetector::undistortImage(cv::Mat inpImg, cv::Mat cameraMatrix,
@@ -143,10 +149,10 @@ std::vector<std::vector<cv::Vec4i>> lanedetector::sortLanes(
     // Condition to classify line as left side or right side
     if (slopes[idx] > 0 && end.x > imgCenter && start.x > imgCenter) {
       rightLanes.push_back(validLines[idx]);
-      rightLane = true;
+      rightLaneF = true;
     } else if (slopes[idx] < 0 && end.x < imgCenter && start.x < imgCenter) {
       leftLanes.push_back(validLines[idx]);
-      leftLane = true;
+      leftLaneF = true;
     }
     ++idx;
   }
@@ -156,4 +162,115 @@ std::vector<std::vector<cv::Vec4i>> lanedetector::sortLanes(
 
 
   return output;
+}
+
+std::vector<cv::Point> lanedetector::computeFitLine(
+    std::vector<std::vector<cv::Vec4i>> validLines, cv::Mat inpImg) {
+  // First collect points on right and left lanes
+  // Then use cv::fitLine to compute a best fit line for these points
+  // then we can simply extrapolate these points acc to our need
+  std::vector<cv::Point> output(4);
+  cv::Point startLeft, endLeft;
+  cv::Point startRight, endRight;
+  cv::Vec4d rightLane;
+  cv::Vec4d leftLane;
+  std::vector<cv::Point> rightPts;
+  std::vector<cv::Point> leftPts;
+  imgCenter = (inpImg.cols) / 2;
+  // If right lines are being detected, fit a line using all the init and final points of the lines
+  if (rightLaneF == true) {
+    for (auto i : validLines[0]) {
+      startRight = cv::Point(i[0], i[1]);
+      endRight = cv::Point(i[2], i[3]);
+
+      rightPts.push_back(startRight);
+      rightPts.push_back(endRight);
+    }
+
+    if (rightPts.size() > 0) {
+      // The right line is formed here
+      cv::fitLine(rightPts, rightLane, CV_DIST_L2, 0, 0.01, 0.01);
+      rightSlope = rightLane[1] / rightLane[0];
+      rightBias = cv::Point(rightLane[2], rightLane[3]);
+    }
+  }
+
+  // If left lines are being detected, fit a line using all the init and final points of the lines
+  if (leftLaneF == true) {
+    for (auto j : validLines[1]) {
+      startLeft = cv::Point(j[0], j[1]);
+      endLeft = cv::Point(j[2], j[3]);
+
+      leftPts.push_back(startLeft);
+      leftPts.push_back(endLeft);
+    }
+
+    if (leftPts.size() > 0) {
+      // The left line is formed here
+      cv::fitLine(leftPts, leftLane, CV_DIST_L2, 0, 0.01, 0.01);
+      leftSlope = leftLane[1] / leftLane[0];
+      leftBias = cv::Point(leftLane[2], leftLane[3]);
+    }
+  }
+
+  // One the slope and offset points have been obtained, apply the line equation to obtain the line points
+  int startY = inpImg.rows;
+  int endY = 470;
+
+  double startRightX = ((startY - rightBias.y) / rightSlope) + rightBias.x;
+  double endRightX = ((endY - rightBias.y) / rightSlope) + rightBias.x;
+
+  double startLeftX = ((startY - leftBias.y) / leftSlope) + leftBias.x;
+  double endLeftX = ((endY - leftBias.y) / leftSlope) + leftBias.x;
+
+  output[0] = cv::Point(startRightX, startY);
+  output[1] = cv::Point(endRightX, endY);
+  output[2] = cv::Point(startLeftX, startY);
+  output[3] = cv::Point(endLeftX, endY);
+
+  return output;
+
+}
+
+std::string lanedetector::predictTurn() {
+  std::string turn;
+  // vanishing point
+  double vanPt;
+  vanPt = static_cast<double>(((rightSlope * rightBias.x)
+      - (leftSlope * leftBias.x) - rightBias.y + leftBias.y)
+      / (rightSlope - leftSlope));
+  if (vanPt < imgCenter - vanPtThresh)
+    turn = "LEFT";
+  else if (vanPt > imgCenter + vanPtThresh)
+    turn = "RIGHT";
+  else if (vanPt < (imgCenter + vanPtThresh)
+      && vanPt > (imgCenter - vanPtThresh))
+    turn = "STRAIGHT";
+  return turn;
+}
+
+int lanedetector::drawPolygon(cv::Mat inpImg, std::vector<cv::Point> finalPoly,
+                std::string turn) {
+  cv::Mat outImg;
+  inpImg.copyTo(outImg);
+  std::vector<cv::Point> filledPoly;
+
+  filledPoly.push_back(finalPoly[2]);
+  filledPoly.push_back(finalPoly[0]);
+  filledPoly.push_back(finalPoly[1]);
+  filledPoly.push_back(finalPoly[3]);
+
+  cv::fillConvexPoly(outImg, filledPoly, cv::Scalar(71, 99, 255), CV_AA, 0);
+  cv::addWeighted(outImg, 0.45, inpImg, 1.0 - 0.45, 0.0, inpImg);
+  cv::putText(inpImg, turn, cv::Point(610, 610),
+              cv::FONT_HERSHEY_COMPLEX_SMALL,
+              0.8, cvScalar(0, 255, 0), 1, CV_AA);
+//  cv::line(outImg, finalPoly[0], finalPoly[1], cv::Scalar(71, 99, 255), 7,
+//           CV_AA);
+//  cv::line(outImg, finalPoly[2], finalPoly[3], cv::Scalar(71, 99, 255), 7,
+//           CV_AA);
+  cv::namedWindow("Output", CV_WINDOW_AUTOSIZE);
+  cv::imshow("Output", inpImg);
+
+  return 0;
 }
