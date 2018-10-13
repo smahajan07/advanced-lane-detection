@@ -73,9 +73,14 @@ int main()
     // sort lines
     std::vector<std::vector<cv::Vec4i>> validLines;
     validLines = obj.sortLanes(lines, maskedImg);
-    // call draw lines
-    Mat linesImg;
-    linesImg = obj.drawLines(undImg, validLines[0], validLines[1]);
+    // call compute Fit line
+    std::vector<cv::Point> finalPoly;
+    finalPoly = obj.computeFitLine(validLines, undImg);
+    // call predict turn
+    std::string turn;
+    turn = obj.predictTurn();
+    // call draw polygon
+    obj.drawPolygon(undImg, finalPoly, turn);
 //    namedWindow("Lines image", WINDOW_AUTOSIZE);
 //    imshow("Lines image", linesImg);
     // wait for key press and then close window
