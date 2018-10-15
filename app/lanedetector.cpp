@@ -30,7 +30,8 @@
  *@brief detect lanes in a given frame and return a frame
  *@brief with an augmented lane overlay for better visualization.
  */
-
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include "../include/lanedetector.h"
 
 // Constructor
@@ -434,7 +435,7 @@ int lanedetector::drawPolygon(cv::Mat inpImg, std::vector<cv::Point> finalPoly,
   cv::addWeighted(outImg, 0.45, inpImg, 1.0 - 0.45, 0.0, inpImg);
   cv::putText(inpImg, turn, cv::Point(610, 610),
               cv::FONT_HERSHEY_COMPLEX_SMALL,
-              0.8, cvScalar(0, 255, 0), 1, CV_AA);
+              0.8, cv::Scalar(0, 255, 0), 1, CV_AA);
 //  cv::line(outImg, finalPoly[0], finalPoly[1], cv::Scalar(71, 99, 255), 7,
 //           CV_AA);
 //  cv::line(outImg, finalPoly[2], finalPoly[3], cv::Scalar(71, 99, 255), 7,
