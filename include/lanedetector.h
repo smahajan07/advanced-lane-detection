@@ -51,6 +51,8 @@ class lanedetector {
 
  public:
   lanedetector();
+  lanedetector(bool, bool, double, double, cv::Point, cv::Point, double,
+               double);
   cv::Mat undistortImage(cv::Mat, cv::Mat, cv::Mat);
   cv::Mat preprocessImage(cv::Mat);
   cv::Mat grayImage(cv::Mat);

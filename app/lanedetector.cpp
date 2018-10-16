@@ -35,7 +35,7 @@
 #include "opencv2/opencv.hpp"
 #include "../include/lanedetector.h"
 
-// Constructor
+// Default constructor
 /**
  *@brief Initializes the private members of the class
  *@param None
@@ -51,6 +51,34 @@ lanedetector::lanedetector() {
   rightBias = cv::Point(0, 0);
   imgCenter = 0;
   vanPtThresh = 12;
+}
+
+// Constructor - Added for Unit Testing
+/**
+ *@brief Initializes the private members of the class
+ *@param leftLaneF flag for if left lane was detected
+ *@param rightLaneF flag for if right lane was detected
+ *@param leftSlope stores value of computed slope of left lane
+ *@param rightSlope stores value of computed slope of right lane
+ *@param leftBias stores value of computed bias of left lane
+ *@param rightBias stores value of computed bias of right lane
+ *@param imgCenter stores value of image center to localise vanishing point
+ *@param vanPtThresh threshold for vanishing point to predict turn
+ *@return None
+ */
+
+lanedetector::lanedetector(bool _leftLaneF, bool _rightLaneF, double _leftSlope,
+                           double _rightSlope, cv::Point _leftBias,
+                           cv::Point _rightBias, double _imgCenter,
+                           double _vanPtThresh) {
+  leftLaneF = _leftLaneF;
+  rightLaneF = _rightLaneF;
+  leftSlope = _leftSlope;
+  rightSlope = _rightSlope;
+  leftBias = _leftBias;
+  rightBias = _rightBias;
+  imgCenter = _imgCenter;
+  vanPtThresh = _vanPtThresh;
 }
 
 // Undistortion
