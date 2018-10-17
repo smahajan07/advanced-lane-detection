@@ -17,16 +17,18 @@ The source code is in modern C++ and please raise an issue or request a PR if yo
 
 ## Installation
 
-* Build and run demo and unit tests (Only if OpenCV is installed, else follow the steps below to install OpenCV)
+* Build and run demo and unit tests (Only if OpenCV is installed, else install OpenCV first by following the steps to install OpenCV)
 
 ```
 git clone git@github.com:smahajan07/advanced-lane-detection.git
 cd <path to repository>
 mkdir build
 cd build
+wget -O project_video.mp4 "https://drive.google.com/uc?export=download&id=1EzhVEtTwcF3gLe1hh-ib2JnFaH31o0fS"
+wget -O test.png "https://drive.google.com/uc?export=download&id=14rU9upKeVllUYNvmpL00W7s95JR8WNQH"
 cmake ..
 make
-./app/shell-app
+Run the demo: ./app/shell-app
 ```
 
 * Steps to install OpenCV, if not installed already
@@ -49,13 +51,23 @@ cd ../../
 
 ## Doxygen Documentation
 
+Doxygen generated documents can be viewed by:
+
+```
+cd <path to repository>
+cd docs
+Open in browser:  classlanedetector.html 
+```
+
 Follow the steps to generate doxygen documentation in HTML and LaTEX:
 
 ```
 cd <path to repository>
-mkdir docs
-cd docs
-doxygen - <config file name>
+mkdir <name of directory>
+cd <name of directory>
+doxygen -g <config file name> 
+Edit config: nano <config file name>
+Run: doxygen <config file name>
 ```
 
 To view the documents, open the file in your browser.
@@ -68,6 +80,12 @@ SIP is current;y being used to manage this project. A product backlog, iteration
 [Google Spread Sheet](https://docs.google.com/spreadsheets/d/1pAFY7_X_TjFaCiD-pRBMCMxe55UK4Ttg2dLJemnxAUg/edit?usp=sharing)
 
 The project consists of two iterations, please find the details in the spreadsheet.
+
+## Credits
+* Udacity Nano Degree Program Dataset
+* [Perspective Transform](http://opencvexamples.blogspot.com/2014/01/perspective-transform.html)
+* Really well written article by Ricardo Zuccolo on advanced lane detection, you can find it [here](https://chatbotslife.com/self-driving-cars-advanced-computer-vision-with-opencv-finding-lane-lines-488a411b2c3d)
+* [OpenCV docs](https://docs.opencv.org/3.0-beta/modules/refman.html)
 
 ## License
 
