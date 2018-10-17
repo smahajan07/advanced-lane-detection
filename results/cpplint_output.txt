@@ -1,0 +1,8 @@
+Done processing ./app/main.cpp
+Done processing ./app/lanedetector.cpp
+Done processing ./include/lanedetector.hpp
+./test/test.cpp:32:  Found C system header after C++ system header. Should be: test.h, c system, c++ system, other.  [build/include_order] [4]
+Done processing ./test/test.cpp
+Done processing ./test/main.cpp
+Total errors found: 1
+
