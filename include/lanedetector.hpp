@@ -30,10 +30,12 @@
  *@brief and defined in lanedetector.cpp
  */
 
-#ifndef LANEDETECTOR_H
-#define LANEDETECTOR_H
+#ifndef INCLUDE_LANEDETECTOR_HPP_
+#define INCLUDE_LANEDETECTOR_HPP_
 
 #include <iostream>
+#include <vector>
+#include <string>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
@@ -69,7 +71,6 @@ class lanedetector {
   std::vector<cv::Point> computeFitLine(std::vector<std::vector<cv::Vec4i>>,
                                         cv::Mat);
   std::string predictTurn();
-
 };
 
-#endif
+#endif  // INCLUDE_LANEDETECTOR_HPP_

@@ -33,7 +33,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
-#include "../include/lanedetector.h"
+#include "../include/lanedetector.hpp"
 
 // Default constructor
 /**
@@ -147,7 +147,7 @@ cv::Mat lanedetector::detectEdges(cv::Mat inpImg) {
 
 // Extract Region of Interest
 /**
- *@brief extract a region of interest from an image
+ *@brief [WIP]extract a region of interest from an image
  *       similar to cropping a region of interest from an image
  *@param inpImg is the input image from which we wish to extract a ROI
  *@param rectRoi is an object of the type cv::Rect and is essentially just
@@ -155,12 +155,13 @@ cv::Mat lanedetector::detectEdges(cv::Mat inpImg) {
  *       the region of interest
  *@return an image which has been extracted from the input image
  */
-cv::Mat lanedetector::extractROI(cv::Mat inpImg, cv::Rect rectRoi) {
-  cv::Mat outImg;
-  outImg = inpImg(rectRoi);
-
-  return outImg;
-}
+// Leaving for future development
+//  cv::Mat lanedetector::extractROI(cv::Mat inpImg, cv::Rect rectRoi) {
+//  cv::Mat outImg;
+//  outImg = inpImg(rectRoi);
+//
+//  return outImg;
+//}
 
 // Create Mask
 /**
@@ -231,24 +232,26 @@ std::vector<cv::Vec4i> lanedetector::detectLanes(cv::Mat inpImg) {
 
 // Draw Lines
 /**
- *@brief Used for debugging. Draws lines on top of an image
+ *@brief [WIP]Used for debugging. Draws lines on top of an image.
  *@param inpImg is the input image on top of which lines will be drawn
  *@param lines is a vector of four dimensional data structure and contains
  *       x and y coordinates of start and end points depicting a line
  *@return input image with overlayed lines
  */
-cv::Mat lanedetector::drawLines(cv::Mat inpImg, std::vector<cv::Vec4i> lines) {
-  cv::Mat outImg = inpImg;
-  for (auto l : lines) {
-    cv::line(outImg, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]),
-             cv::Scalar(0, 0, 255), 3, CV_AA);
-  }
-
-  return outImg;
-}
+// Leaving for future development
+//  cv::Mat lanedetector::drawLines(cv::Mat inpImg,
+//                                      std::vector<cv::Vec4i> lines) {
+//  cv::Mat outImg = inpImg;
+//  for (auto l : lines) {
+//    cv::line(outImg, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]),
+//             cv::Scalar(0, 0, 255), 3, CV_AA);
+//  }
+//
+//  return outImg;
+//}
 // Draw Lines
 /**
- *@brief Used for debugging. Draws lines on top of an image
+ *@brief [WIP]Used for debugging. Draws lines on top of an image
  *@param inpImg is the input image on top of which lines will be drawn
  *@param leftLines is a vector of four dimensional data structure and contains
  *       x and y coordinates of start and end points depicting a line
@@ -256,23 +259,24 @@ cv::Mat lanedetector::drawLines(cv::Mat inpImg, std::vector<cv::Vec4i> lines) {
  *       x and y coordinates of start and end points depicting a line
  *@return input image with overlayed lines
  */
-cv::Mat lanedetector::drawLines(cv::Mat inpImg,
-                                std::vector<cv::Vec4i> leftLines,
-                                std::vector<cv::Vec4i> rightLines) {
-  cv::Mat outImg = inpImg;
-  for (auto l : leftLines) {
-    cv::line(outImg, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]),
-             cv::Scalar(0, 0, 255), 3, CV_AA);
-  }
-  for (auto l : rightLines) {
-    cv::line(outImg, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]),
-             cv::Scalar(0, 0, 255), 3, CV_AA);
-  }
-  cv::namedWindow("Output", CV_WINDOW_AUTOSIZE);
-  cv::imshow("Output", outImg);
-
-  return outImg;
-}
+// Leaving for future development
+// cv::Mat lanedetector::drawLines(cv::Mat inpImg,
+//                                std::vector<cv::Vec4i> leftLines,
+//                                std::vector<cv::Vec4i> rightLines) {
+//  cv::Mat outImg = inpImg;
+//  for (auto l : leftLines) {
+//    cv::line(outImg, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]),
+//             cv::Scalar(0, 0, 255), 3, CV_AA);
+//  }
+//  for (auto l : rightLines) {
+//    cv::line(outImg, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]),
+//             cv::Scalar(0, 0, 255), 3, CV_AA);
+//  }
+//  cv::namedWindow("Output", CV_WINDOW_AUTOSIZE);
+//  cv::imshow("Output", outImg);
+//
+//  return outImg;
+//}
 
 // Sort Lanes
 /**
