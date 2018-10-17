@@ -45,6 +45,8 @@ script:
   - export CXX=$COMPILER;
   - mkdir build
   - cd build
+  - wget -O project_video.mp4 "https://drive.google.com/uc?export=download&id=1EzhVEtTwcF3gLe1hh-ib2JnFaH31o0fS"
+  - wget -O test.png "https://drive.google.com/uc?export=download&id=14rU9upKeVllUYNvmpL00W7s95JR8WNQH"
   - cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ../
   - make
   - make code_coverage
