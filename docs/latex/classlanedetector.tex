@@ -15,22 +15,25 @@ cv\+::\+Mat \hyperlink{classlanedetector_a90b977cb614d19ffa5e56f1b3ef3e8c9}{gray
 \begin{DoxyCompactList}\small\item\em convert a B\+GR image (three channels) to grayscale (single channel) \end{DoxyCompactList}\item 
 cv\+::\+Mat \hyperlink{classlanedetector_a8830dfaa616e20b5e15f8846fa8660eb}{detect\+Edges} (cv\+::\+Mat)
 \begin{DoxyCompactList}\small\item\em Detect edges in an gray scale image. Since the ultimate objective is to detect lanes, it is easier and efficient to compute straight lines from edges extracted from an image. \end{DoxyCompactList}\item 
-cv\+::\+Mat \hyperlink{classlanedetector_ab82eab5e0a1d126018c99875b2486d5e}{extract\+R\+OI} (cv\+::\+Mat, cv\+::\+Rect)
-\begin{DoxyCompactList}\small\item\em extract a region of interest from an image similar to cropping a region of interest from an image \end{DoxyCompactList}\item 
+cv\+::\+Mat {\bfseries extract\+R\+OI} (cv\+::\+Mat, cv\+::\+Rect)\hypertarget{classlanedetector_ab82eab5e0a1d126018c99875b2486d5e}{}\label{classlanedetector_ab82eab5e0a1d126018c99875b2486d5e}
+
+\item 
 cv\+::\+Mat \hyperlink{classlanedetector_abea27c43dbcf8444f5c2b23dd6e4bb6d}{create\+Mask} (cv\+::\+Mat)
-\begin{DoxyCompactList}\small\item\em Mask the image so that only a certain portion of the image has active contents, the rest are set to inactive region, say set to zero. This is similar to what extract\+R\+OI is doing except that we retain the dimensions of the original image and only the region of interest is active. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \mbox{[}W\+IP\mbox{]}extract a region of interest from an image similar to cropping a region of interest from an image \end{DoxyCompactList}\item 
 cv\+::\+Mat \hyperlink{classlanedetector_a6433369cb584d5c247fe1a00569d17d5}{perspective\+Transform} (cv\+::\+Mat)
 \begin{DoxyCompactList}\small\item\em Warping an image to get a top view or bird\textquotesingle{}s eye view. To improve accuracy of detecting straight lines we can project the R\+OI with lanes in the bird\textquotesingle{}s eye view. \end{DoxyCompactList}\item 
 std\+::vector$<$ cv\+::\+Vec4i $>$ \hyperlink{classlanedetector_a10d588d6b85384ad237e6fbfdf679591}{detect\+Lanes} (cv\+::\+Mat)
 \begin{DoxyCompactList}\small\item\em detects straight lines in a given image \end{DoxyCompactList}\item 
-cv\+::\+Mat \hyperlink{classlanedetector_a7d7506555f481f184276a4180c200a73}{draw\+Lines} (cv\+::\+Mat, std\+::vector$<$ cv\+::\+Vec4i $>$)
-\begin{DoxyCompactList}\small\item\em Used for debugging. Draws lines on top of an image. \end{DoxyCompactList}\item 
-cv\+::\+Mat \hyperlink{classlanedetector_a714784d2ef657578c3b8bbef5aeb3dd4}{draw\+Lines} (cv\+::\+Mat, std\+::vector$<$ cv\+::\+Vec4i $>$, std\+::vector$<$ cv\+::\+Vec4i $>$)
-\begin{DoxyCompactList}\small\item\em Used for debugging. Draws lines on top of an image. \end{DoxyCompactList}\item 
+cv\+::\+Mat {\bfseries draw\+Lines} (cv\+::\+Mat, std\+::vector$<$ cv\+::\+Vec4i $>$)\hypertarget{classlanedetector_a7d7506555f481f184276a4180c200a73}{}\label{classlanedetector_a7d7506555f481f184276a4180c200a73}
+
+\item 
+cv\+::\+Mat {\bfseries draw\+Lines} (cv\+::\+Mat, std\+::vector$<$ cv\+::\+Vec4i $>$, std\+::vector$<$ cv\+::\+Vec4i $>$)\hypertarget{classlanedetector_a714784d2ef657578c3b8bbef5aeb3dd4}{}\label{classlanedetector_a714784d2ef657578c3b8bbef5aeb3dd4}
+
+\item 
 int \hyperlink{classlanedetector_a03607a04461f6f9137a2d97297266d82}{draw\+Polygon} (cv\+::\+Mat, std\+::vector$<$ cv\+::\+Point $>$, std\+::string)
 \begin{DoxyCompactList}\small\item\em Augments the detected lane with a colored polygon for better visualization. Also adds text received from the predict\+Turn function. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::vector$<$ cv\+::\+Vec4i $>$ $>$ \hyperlink{classlanedetector_a1b9086075ddbe4827f473ce7105c1c27}{sort\+Lanes} (std\+::vector$<$ cv\+::\+Vec4i $>$, cv\+::\+Mat)
-\begin{DoxyCompactList}\small\item\em Selects only valid lines from all detected lines and sorts them into potentially left lane or right lane based on their slope. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \mbox{[}W\+IP\mbox{]}Used for debugging. Draws lines on top of an image. \end{DoxyCompactList}\item 
 std\+::vector$<$ cv\+::\+Point $>$ \hyperlink{classlanedetector_a70feae4d9119d7288b54bd7ea79ffb47}{compute\+Fit\+Line} (std\+::vector$<$ std\+::vector$<$ cv\+::\+Vec4i $>$$>$, cv\+::\+Mat)
 \begin{DoxyCompactList}\small\item\em performing basic regression to fit a line for left lane and right lane from all the sorted lines output from sort\+Lanes function \end{DoxyCompactList}\item 
 std\+::string \hyperlink{classlanedetector_a98a1c156b23a87158f1460df8544b118}{predict\+Turn} ()
@@ -131,8 +134,18 @@ a vector of four points representing the final two lines for left and right resp
 )}\hypertarget{classlanedetector_abea27c43dbcf8444f5c2b23dd6e4bb6d}{}\label{classlanedetector_abea27c43dbcf8444f5c2b23dd6e4bb6d}
 
 
-Mask the image so that only a certain portion of the image has active contents, the rest are set to inactive region, say set to zero. This is similar to what extract\+R\+OI is doing except that we retain the dimensions of the original image and only the region of interest is active. 
+\mbox{[}W\+IP\mbox{]}extract a region of interest from an image similar to cropping a region of interest from an image 
 
+
+\begin{DoxyParams}{Parameters}
+{\em inp\+Img} & is the input image from which we wish to extract a R\+OI \\
+\hline
+{\em rect\+Roi} & is an object of the type cv\+::\+Rect and is essentially just a set of four points which we will use as vertices for extracting the region of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an image which has been extracted from the input image Mask the image so that only a certain portion of the image has active contents, the rest are set to inactive region, say set to zero. This is similar to what extract\+R\+OI is doing except that we retain the dimensions of the original image and only the region of interest is active. 
+\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em inp\+Img} & is the input image that we need to mask to bring out only a R\+OI \\
@@ -179,53 +192,6 @@ detects straight lines in a given image
 \begin{DoxyReturn}{Returns}
 a vector of a four dimensional data structure which holds the x and y coordinates of the start and end point of a line 
 \end{DoxyReturn}
-\index{lanedetector@{lanedetector}!draw\+Lines@{draw\+Lines}}
-\index{draw\+Lines@{draw\+Lines}!lanedetector@{lanedetector}}
-\subsubsection[{\texorpdfstring{draw\+Lines(cv\+::\+Mat, std\+::vector$<$ cv\+::\+Vec4i $>$)}{drawLines(cv::Mat, std::vector< cv::Vec4i >)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat lanedetector\+::draw\+Lines (
-\begin{DoxyParamCaption}
-\item[{cv\+::\+Mat}]{inp\+Img, }
-\item[{std\+::vector$<$ cv\+::\+Vec4i $>$}]{lines}
-\end{DoxyParamCaption}
-)}\hypertarget{classlanedetector_a7d7506555f481f184276a4180c200a73}{}\label{classlanedetector_a7d7506555f481f184276a4180c200a73}
-
-
-Used for debugging. Draws lines on top of an image. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em inp\+Img} & is the input image on top of which lines will be drawn \\
-\hline
-{\em lines} & is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-input image with overlayed lines 
-\end{DoxyReturn}
-\index{lanedetector@{lanedetector}!draw\+Lines@{draw\+Lines}}
-\index{draw\+Lines@{draw\+Lines}!lanedetector@{lanedetector}}
-\subsubsection[{\texorpdfstring{draw\+Lines(cv\+::\+Mat, std\+::vector$<$ cv\+::\+Vec4i $>$, std\+::vector$<$ cv\+::\+Vec4i $>$)}{drawLines(cv::Mat, std::vector< cv::Vec4i >, std::vector< cv::Vec4i >)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat lanedetector\+::draw\+Lines (
-\begin{DoxyParamCaption}
-\item[{cv\+::\+Mat}]{inp\+Img, }
-\item[{std\+::vector$<$ cv\+::\+Vec4i $>$}]{left\+Lines, }
-\item[{std\+::vector$<$ cv\+::\+Vec4i $>$}]{right\+Lines}
-\end{DoxyParamCaption}
-)}\hypertarget{classlanedetector_a714784d2ef657578c3b8bbef5aeb3dd4}{}\label{classlanedetector_a714784d2ef657578c3b8bbef5aeb3dd4}
-
-
-Used for debugging. Draws lines on top of an image. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em inp\+Img} & is the input image on top of which lines will be drawn \\
-\hline
-{\em left\+Lines} & is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line \\
-\hline
-{\em right\+Lines} & is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-input image with overlayed lines 
-\end{DoxyReturn}
 \index{lanedetector@{lanedetector}!draw\+Polygon@{draw\+Polygon}}
 \index{draw\+Polygon@{draw\+Polygon}!lanedetector@{lanedetector}}
 \subsubsection[{\texorpdfstring{draw\+Polygon(cv\+::\+Mat, std\+::vector$<$ cv\+::\+Point $>$, std\+::string)}{drawPolygon(cv::Mat, std::vector< cv::Point >, std::string)}}]{\setlength{\rightskip}{0pt plus 5cm}int lanedetector\+::draw\+Polygon (
@@ -250,28 +216,6 @@ Augments the detected lane with a colored polygon for better visualization. Also
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 None 
-\end{DoxyReturn}
-\index{lanedetector@{lanedetector}!extract\+R\+OI@{extract\+R\+OI}}
-\index{extract\+R\+OI@{extract\+R\+OI}!lanedetector@{lanedetector}}
-\subsubsection[{\texorpdfstring{extract\+R\+O\+I(cv\+::\+Mat, cv\+::\+Rect)}{extractROI(cv::Mat, cv::Rect)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat lanedetector\+::extract\+R\+OI (
-\begin{DoxyParamCaption}
-\item[{cv\+::\+Mat}]{inp\+Img, }
-\item[{cv\+::\+Rect}]{rect\+Roi}
-\end{DoxyParamCaption}
-)}\hypertarget{classlanedetector_ab82eab5e0a1d126018c99875b2486d5e}{}\label{classlanedetector_ab82eab5e0a1d126018c99875b2486d5e}
-
-
-extract a region of interest from an image similar to cropping a region of interest from an image 
-
-
-\begin{DoxyParams}{Parameters}
-{\em inp\+Img} & is the input image from which we wish to extract a R\+OI \\
-\hline
-{\em rect\+Roi} & is an object of the type cv\+::\+Rect and is essentially just a set of four points which we will use as vertices for extracting the region of interest \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-an image which has been extracted from the input image 
 \end{DoxyReturn}
 \index{lanedetector@{lanedetector}!gray\+Image@{gray\+Image}}
 \index{gray\+Image@{gray\+Image}!lanedetector@{lanedetector}}
@@ -359,8 +303,30 @@ blurred or smooth image after denoising
 )}\hypertarget{classlanedetector_a1b9086075ddbe4827f473ce7105c1c27}{}\label{classlanedetector_a1b9086075ddbe4827f473ce7105c1c27}
 
 
-Selects only valid lines from all detected lines and sorts them into potentially left lane or right lane based on their slope. 
+\mbox{[}W\+IP\mbox{]}Used for debugging. Draws lines on top of an image. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em inp\+Img} & is the input image on top of which lines will be drawn \\
+\hline
+{\em lines} & is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+input image with overlayed lines \mbox{[}W\+IP\mbox{]}Used for debugging. Draws lines on top of an image 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em inp\+Img} & is the input image on top of which lines will be drawn \\
+\hline
+{\em left\+Lines} & is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line \\
+\hline
+{\em right\+Lines} & is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+input image with overlayed lines Selects only valid lines from all detected lines and sorts them into potentially left lane or right lane based on their slope 
+\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em lines} & is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line \\
@@ -400,5 +366,5 @@ undistorted image
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/sarthak/fall18/808x/code/advanced-\/lane-\/detection/include/\hyperlink{lanedetector_8h}{lanedetector.\+h}\item 
+/home/sarthak/fall18/808x/code/advanced-\/lane-\/detection/include/lanedetector.\+hpp\item 
 /home/sarthak/fall18/808x/code/advanced-\/lane-\/detection/app/\hyperlink{lanedetector_8cpp}{lanedetector.\+cpp}\end{DoxyCompactItemize}

@@ -110,11 +110,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8830dfaa616e20b5e15f8846fa8660eb"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#a8830dfaa616e20b5e15f8846fa8660eb">detectEdges</a> (cv::Mat)</td></tr>
 <tr class="memdesc:a8830dfaa616e20b5e15f8846fa8660eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect edges in an gray scale image. Since the ultimate objective is to detect lanes, it is easier and efficient to compute straight lines from edges extracted from an image.  <a href="#a8830dfaa616e20b5e15f8846fa8660eb">More...</a><br /></td></tr>
 <tr class="separator:a8830dfaa616e20b5e15f8846fa8660eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82eab5e0a1d126018c99875b2486d5e"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#ab82eab5e0a1d126018c99875b2486d5e">extractROI</a> (cv::Mat, cv::Rect)</td></tr>
-<tr class="memdesc:ab82eab5e0a1d126018c99875b2486d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">extract a region of interest from an image similar to cropping a region of interest from an image  <a href="#ab82eab5e0a1d126018c99875b2486d5e">More...</a><br /></td></tr>
+<tr class="memitem:ab82eab5e0a1d126018c99875b2486d5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab82eab5e0a1d126018c99875b2486d5e"></a>
+cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><b>extractROI</b> (cv::Mat, cv::Rect)</td></tr>
 <tr class="separator:ab82eab5e0a1d126018c99875b2486d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abea27c43dbcf8444f5c2b23dd6e4bb6d"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#abea27c43dbcf8444f5c2b23dd6e4bb6d">createMask</a> (cv::Mat)</td></tr>
-<tr class="memdesc:abea27c43dbcf8444f5c2b23dd6e4bb6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask the image so that only a certain portion of the image has active contents, the rest are set to inactive region, say set to zero. This is similar to what extractROI is doing except that we retain the dimensions of the original image and only the region of interest is active.  <a href="#abea27c43dbcf8444f5c2b23dd6e4bb6d">More...</a><br /></td></tr>
+<tr class="memdesc:abea27c43dbcf8444f5c2b23dd6e4bb6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[WIP]extract a region of interest from an image similar to cropping a region of interest from an image  <a href="#abea27c43dbcf8444f5c2b23dd6e4bb6d">More...</a><br /></td></tr>
 <tr class="separator:abea27c43dbcf8444f5c2b23dd6e4bb6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6433369cb584d5c247fe1a00569d17d5"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#a6433369cb584d5c247fe1a00569d17d5">perspectiveTransform</a> (cv::Mat)</td></tr>
 <tr class="memdesc:a6433369cb584d5c247fe1a00569d17d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Warping an image to get a top view or bird's eye view. To improve accuracy of detecting straight lines we can project the ROI with lanes in the bird's eye view.  <a href="#a6433369cb584d5c247fe1a00569d17d5">More...</a><br /></td></tr>
@@ -122,17 +122,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a10d588d6b85384ad237e6fbfdf679591"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#a10d588d6b85384ad237e6fbfdf679591">detectLanes</a> (cv::Mat)</td></tr>
 <tr class="memdesc:a10d588d6b85384ad237e6fbfdf679591"><td class="mdescLeft">&#160;</td><td class="mdescRight">detects straight lines in a given image  <a href="#a10d588d6b85384ad237e6fbfdf679591">More...</a><br /></td></tr>
 <tr class="separator:a10d588d6b85384ad237e6fbfdf679591"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d7506555f481f184276a4180c200a73"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#a7d7506555f481f184276a4180c200a73">drawLines</a> (cv::Mat, std::vector&lt; cv::Vec4i &gt;)</td></tr>
-<tr class="memdesc:a7d7506555f481f184276a4180c200a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for debugging. Draws lines on top of an image.  <a href="#a7d7506555f481f184276a4180c200a73">More...</a><br /></td></tr>
+<tr class="memitem:a7d7506555f481f184276a4180c200a73"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d7506555f481f184276a4180c200a73"></a>
+cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><b>drawLines</b> (cv::Mat, std::vector&lt; cv::Vec4i &gt;)</td></tr>
 <tr class="separator:a7d7506555f481f184276a4180c200a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a714784d2ef657578c3b8bbef5aeb3dd4"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#a714784d2ef657578c3b8bbef5aeb3dd4">drawLines</a> (cv::Mat, std::vector&lt; cv::Vec4i &gt;, std::vector&lt; cv::Vec4i &gt;)</td></tr>
-<tr class="memdesc:a714784d2ef657578c3b8bbef5aeb3dd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for debugging. Draws lines on top of an image.  <a href="#a714784d2ef657578c3b8bbef5aeb3dd4">More...</a><br /></td></tr>
+<tr class="memitem:a714784d2ef657578c3b8bbef5aeb3dd4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a714784d2ef657578c3b8bbef5aeb3dd4"></a>
+cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><b>drawLines</b> (cv::Mat, std::vector&lt; cv::Vec4i &gt;, std::vector&lt; cv::Vec4i &gt;)</td></tr>
 <tr class="separator:a714784d2ef657578c3b8bbef5aeb3dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03607a04461f6f9137a2d97297266d82"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#a03607a04461f6f9137a2d97297266d82">drawPolygon</a> (cv::Mat, std::vector&lt; cv::Point &gt;, std::string)</td></tr>
 <tr class="memdesc:a03607a04461f6f9137a2d97297266d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Augments the detected lane with a colored polygon for better visualization. Also adds text received from the predictTurn function.  <a href="#a03607a04461f6f9137a2d97297266d82">More...</a><br /></td></tr>
 <tr class="separator:a03607a04461f6f9137a2d97297266d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b9086075ddbe4827f473ce7105c1c27"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; cv::Vec4i &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#a1b9086075ddbe4827f473ce7105c1c27">sortLanes</a> (std::vector&lt; cv::Vec4i &gt;, cv::Mat)</td></tr>
-<tr class="memdesc:a1b9086075ddbe4827f473ce7105c1c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects only valid lines from all detected lines and sorts them into potentially left lane or right lane based on their slope.  <a href="#a1b9086075ddbe4827f473ce7105c1c27">More...</a><br /></td></tr>
+<tr class="memdesc:a1b9086075ddbe4827f473ce7105c1c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">[WIP]Used for debugging. Draws lines on top of an image.  <a href="#a1b9086075ddbe4827f473ce7105c1c27">More...</a><br /></td></tr>
 <tr class="separator:a1b9086075ddbe4827f473ce7105c1c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70feae4d9119d7288b54bd7ea79ffb47"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Point &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlanedetector.html#a70feae4d9119d7288b54bd7ea79ffb47">computeFitLine</a> (std::vector&lt; std::vector&lt; cv::Vec4i &gt;&gt;, cv::Mat)</td></tr>
 <tr class="memdesc:a70feae4d9119d7288b54bd7ea79ffb47"><td class="mdescLeft">&#160;</td><td class="mdescRight">performing basic regression to fit a line for left lane and right lane from all the sorted lines output from sortLanes function  <a href="#a70feae4d9119d7288b54bd7ea79ffb47">More...</a><br /></td></tr>
@@ -295,7 +295,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Mask the image so that only a certain portion of the image has active contents, the rest are set to inactive region, say set to zero. This is similar to what extractROI is doing except that we retain the dimensions of the original image and only the region of interest is active. </p>
+<p>[WIP]extract a region of interest from an image similar to cropping a region of interest from an image </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inpImg</td><td>is the input image from which we wish to extract a ROI </td></tr>
+    <tr><td class="paramname">rectRoi</td><td>is an object of the type cv::Rect and is essentially just a set of four points which we will use as vertices for extracting the region of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an image which has been extracted from the input image Mask the image so that only a certain portion of the image has active contents, the rest are set to inactive region, say set to zero. This is similar to what extractROI is doing except that we retain the dimensions of the original image and only the region of interest is active. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">inpImg</td><td>is the input image that we need to mask to bring out only a ROI </td></tr>
@@ -356,85 +364,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7d7506555f481f184276a4180c200a73"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cv::Mat lanedetector::drawLines </td>
-          <td>(</td>
-          <td class="paramtype">cv::Mat&#160;</td>
-          <td class="paramname"><em>inpImg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; cv::Vec4i &gt;&#160;</td>
-          <td class="paramname"><em>lines</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Used for debugging. Draws lines on top of an image. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">inpImg</td><td>is the input image on top of which lines will be drawn </td></tr>
-    <tr><td class="paramname">lines</td><td>is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>input image with overlayed lines </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a714784d2ef657578c3b8bbef5aeb3dd4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cv::Mat lanedetector::drawLines </td>
-          <td>(</td>
-          <td class="paramtype">cv::Mat&#160;</td>
-          <td class="paramname"><em>inpImg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; cv::Vec4i &gt;&#160;</td>
-          <td class="paramname"><em>leftLines</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; cv::Vec4i &gt;&#160;</td>
-          <td class="paramname"><em>rightLines</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Used for debugging. Draws lines on top of an image. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">inpImg</td><td>is the input image on top of which lines will be drawn </td></tr>
-    <tr><td class="paramname">leftLines</td><td>is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line </td></tr>
-    <tr><td class="paramname">rightLines</td><td>is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>input image with overlayed lines </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a03607a04461f6f9137a2d97297266d82"></a>
 <div class="memitem">
 <div class="memproto">
@@ -475,42 +404,6 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ab82eab5e0a1d126018c99875b2486d5e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cv::Mat lanedetector::extractROI </td>
-          <td>(</td>
-          <td class="paramtype">cv::Mat&#160;</td>
-          <td class="paramname"><em>inpImg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">cv::Rect&#160;</td>
-          <td class="paramname"><em>rectRoi</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>extract a region of interest from an image similar to cropping a region of interest from an image </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">inpImg</td><td>is the input image from which we wish to extract a ROI </td></tr>
-    <tr><td class="paramname">rectRoi</td><td>is an object of the type cv::Rect and is essentially just a set of four points which we will use as vertices for extracting the region of interest </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>an image which has been extracted from the input image </dd></dl>
 
 </div>
 </div>
@@ -637,7 +530,24 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Selects only valid lines from all detected lines and sorts them into potentially left lane or right lane based on their slope. </p>
+<p>[WIP]Used for debugging. Draws lines on top of an image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inpImg</td><td>is the input image on top of which lines will be drawn </td></tr>
+    <tr><td class="paramname">lines</td><td>is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>input image with overlayed lines [WIP]Used for debugging. Draws lines on top of an image </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inpImg</td><td>is the input image on top of which lines will be drawn </td></tr>
+    <tr><td class="paramname">leftLines</td><td>is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line </td></tr>
+    <tr><td class="paramname">rightLines</td><td>is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>input image with overlayed lines Selects only valid lines from all detected lines and sorts them into potentially left lane or right lane based on their slope </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lines</td><td>is a vector of four dimensional data structure and contains x and y coordinates of start and end points depicting a line </td></tr>
@@ -693,7 +603,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/sarthak/fall18/808x/code/advanced-lane-detection/include/<a class="el" href="lanedetector_8h_source.html">lanedetector.h</a></li>
+<li>/home/sarthak/fall18/808x/code/advanced-lane-detection/include/<a class="el" href="lanedetector_8hpp_source.html">lanedetector.hpp</a></li>
 <li>/home/sarthak/fall18/808x/code/advanced-lane-detection/app/<a class="el" href="lanedetector_8cpp.html">lanedetector.cpp</a></li>
 </ul>
 </div><!-- contents -->
