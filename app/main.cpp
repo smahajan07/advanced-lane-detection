@@ -36,23 +36,25 @@
 # include "../include/lanedetector.h"
 #define NUMFRAMES 500
 
-using namespace cv;
-
-int main()
-{
-  // TODO: make params into yml and then import
-  Mat cameraMatrix, distCoeff;
+int main() {
+  // TODO(smahajan07): make params into yml and then import
+  cv::Mat cameraMatrix, distCoeff;
   cameraMatrix =
-      (Mat_<double>(3, 3) << 1.15422732e+03, 0.00000000e+00, 6.71627794e+02, 0.00000000e+00, 1.14818221e+03, 3.86046312e+02, 0.00000000e+00, 0.00000000e+00, 1.00000000e+00);
+      (cv::Mat_<double>(3, 3) << 1.15422732e+03, 0.00000000e+00, 6.71627794e+02,
+                                 0.00000000e+00, 1.14818221e+03, 3.86046312e+02,
+                                 0.00000000e+00, 0.00000000e+00,
+                                 1.00000000e+00);
   distCoeff =
-      (Mat_<double>(5, 1) << -2.42565104e-01, -4.77893070e-02, -1.31388084e-03, -8.79107779e-05, 2.20573263e-02);
+      (cv::Mat_<double>(5, 1) << -2.42565104e-01, -4.77893070e-02,
+                                 -1.31388084e-03, -8.79107779e-05,
+                                  2.20573263e-02);
   // Creating object of lane detector class
   lanedetector obj;
   // create all variables
-  Mat orgImg;
-  Mat undImg, ppImg, grayImg, edgeImg;
-  Mat maskedImg;
-  Mat warpedImg;
+  cv::Mat orgImg;
+  cv::Mat undImg, ppImg, grayImg, edgeImg;
+  cv::Mat maskedImg;
+  cv::Mat warpedImg;
   std::vector<cv::Vec4i> lines;
   std::vector<std::vector<cv::Vec4i>> validLines;
   std::vector<cv::Point> finalPoly;
@@ -94,7 +96,7 @@ int main()
     // call draw polygon
     obj.drawPolygon(undImg, finalPoly, turn);
     ++fCount;
-    waitKey(15);
+    cv::waitKey(15);
   }
 
   return 0;

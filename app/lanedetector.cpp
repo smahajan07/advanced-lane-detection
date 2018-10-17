@@ -359,7 +359,8 @@ std::vector<cv::Point> lanedetector::computeFitLine(
   std::vector<cv::Point> rightPts;
   std::vector<cv::Point> leftPts;
   imgCenter = (inpImg.cols) / 2;
-  // If right lines are being detected, fit a line using all the init and final points of the lines
+  // If right lines are being detected, fit a line using all
+  // the init and final points of the lines
   if (rightLaneF == true) {
     for (auto i : validLines[0]) {
       startRight = cv::Point(i[0], i[1]);
@@ -377,7 +378,8 @@ std::vector<cv::Point> lanedetector::computeFitLine(
     }
   }
 
-  // If left lines are being detected, fit a line using all the init and final points of the lines
+  // If left lines are being detected, fit a line using all
+  // the init and final points of the lines
   if (leftLaneF == true) {
     for (auto j : validLines[1]) {
       startLeft = cv::Point(j[0], j[1]);
@@ -395,7 +397,8 @@ std::vector<cv::Point> lanedetector::computeFitLine(
     }
   }
 
-  // One the slope and offset points have been obtained, apply the line equation to obtain the line points
+  // One the slope and offset points have been obtained, apply the
+  // line equation to obtain the line points
   int startY = inpImg.rows;
   int endY = 470;
 
