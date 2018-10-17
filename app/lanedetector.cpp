@@ -26,9 +26,9 @@
  *@file lanedetector.cpp
  *@author Sarthak Mahajan
  *@brief All methods for class lanedetector are defined here.
- *@brief Primary objective of an object of this class is to
- *@brief detect lanes in a given frame and return a frame
- *@brief with an augmented lane overlay for better visualization.
+ *       Primary objective of an object of this class is to
+ *       detect lanes in a given frame and return a frame
+ *       with an augmented lane overlay for better visualization.
  */
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -84,14 +84,14 @@ lanedetector::lanedetector(bool _leftLaneF, bool _rightLaneF, double _leftSlope,
 // Undistortion
 /**
  *@brief Due to radial distortion, straight lines appear as curved.
- *@brief This function undistorts the input image provided the intrinsic
- *@brief camera paramters. OpenCV provides an inbuilt function to perform
- *@brief this operation.
+ *       This function undistorts the input image provided the intrinsic
+ *       camera paramters. OpenCV provides an inbuilt function to perform
+ *       this operation.
  *@param inpImg is the input image that needs to be un distorted
  *@param cameraMatrix is an intrinsic camera parameter with focal length
- *@param and optical center values
+ *       and optical center values
  *@param distCoeff are the distortion coefficients and are required to
- *@param undistort the image
+ *       undistort the image
  *@return undistorted image
  */
 cv::Mat lanedetector::undistortImage(cv::Mat inpImg, cv::Mat cameraMatrix,
@@ -131,8 +131,8 @@ cv::Mat lanedetector::grayImage(cv::Mat inpImg) {
 // Detect Edges
 /**
  *@brief Detect edges in an gray scale image. Since the ultimate objective
- *@brief is to detect lanes, it is easier and efficient to compute straight
- *@brief lines from edges extracted from an image
+ *       is to detect lanes, it is easier and efficient to compute straight
+ *       lines from edges extracted from an image
  *@param inpImg is a grayscale image
  *@return image with extracted edges
  */
@@ -148,11 +148,11 @@ cv::Mat lanedetector::detectEdges(cv::Mat inpImg) {
 // Extract Region of Interest
 /**
  *@brief extract a region of interest from an image
- *@brief similar to cropping a region of interest from an image
+ *       similar to cropping a region of interest from an image
  *@param inpImg is the input image from which we wish to extract a ROI
  *@param rectRoi is an object of the type cv::Rect and is essentially just
- *@param a set of four points which we will use as vertices for extracting
- *@param the region of interest
+ *       a set of four points which we will use as vertices for extracting
+ *       the region of interest
  *@return an image which has been extracted from the input image
  */
 cv::Mat lanedetector::extractROI(cv::Mat inpImg, cv::Rect rectRoi) {
@@ -165,15 +165,17 @@ cv::Mat lanedetector::extractROI(cv::Mat inpImg, cv::Rect rectRoi) {
 // Create Mask
 /**
  *@brief Mask the image so that only a certain portion of the image has active
- *@brief contents, the rest are set to inactive region, say set to zero. This
- *@brief is similar to what extractROI is doing except that we retain the dimensions
- *@brief of the original image and only the region of interest is active.
+ *       contents, the rest are set to inactive region, say set to zero. This
+ *       is similar to what extractROI is doing except that we retain the dimensions
+ *       of the original image and only the region of interest is active.
  *@param inpImg is the input image that we need to mask to bring out only a ROI
  *@return masked image with dimensions same as input image
  */
 cv::Mat lanedetector::createMask(cv::Mat inpImg) {
   cv::Mat outImg;
   cv::Mat mask = cv::Mat::zeros(inpImg.size(), inpImg.type());
+  // Similar to extracting a region of interest, we are creating
+  // a mask for that region
   cv::Point vertices[4] = { cv::Point(210, 650), cv::Point(550, 450), cv::Point(
       717, 450), cv::Point(1280, 650) };
   cv::fillConvexPoly(mask, vertices, 4, cv::Scalar(255, 0, 0));
@@ -185,8 +187,8 @@ cv::Mat lanedetector::createMask(cv::Mat inpImg) {
 // Perspective Transform
 /**
  *@brief Warping an image to get a top view or bird's eye view. To improve
- *@brief accuracy of detecting straight lines we can project the ROI with
- *@brief lanes in the bird's eye view.
+ *       accuracy of detecting straight lines we can project the ROI with
+ *       lanes in the bird's eye view.
  *@param inpImg is the input image which needs to projected in top view
  *@return warped image (in the top view)
  */
@@ -195,6 +197,8 @@ cv::Mat lanedetector::perspectiveTransform(cv::Mat inpImg) {
   cv::Point2f inpQuad[4], outQuad[4];
   cv::Mat lambda(2, 4, CV_32FC1);
   lambda = cv::Mat::zeros(inpImg.rows, inpImg.cols, inpImg.type());
+  // These are hard coded but will be automatically calculated
+  // for future builds
   inpQuad[0] = cv::Point2f(581, 477);
   inpQuad[1] = cv::Point2f(699, 477);
   inpQuad[2] = cv::Point2f(896, 675);
@@ -204,7 +208,7 @@ cv::Mat lanedetector::perspectiveTransform(cv::Mat inpImg) {
   outQuad[1] = cv::Point2f(896, 0);
   outQuad[2] = cv::Point2f(896, 720);
   outQuad[3] = cv::Point2f(384, 720);
-
+  // get the transformation matrix and then perform transformation
   lambda = cv::getPerspectiveTransform(inpQuad, outQuad);
   cv::warpPerspective(inpImg, outImg, lambda, outImg.size());
 
@@ -216,7 +220,7 @@ cv::Mat lanedetector::perspectiveTransform(cv::Mat inpImg) {
  *@brief detects straight lines in a given image
  *@param inpImg is the image from which we need to detect straight lines
  *@return a vector of a four dimensional data structure which holds the
- *@return x and y coordinates of the start and end point of a line
+ *        x and y coordinates of the start and end point of a line
  */
 std::vector<cv::Vec4i> lanedetector::detectLanes(cv::Mat inpImg) {
   std::vector<cv::Vec4i> lines;
@@ -230,7 +234,7 @@ std::vector<cv::Vec4i> lanedetector::detectLanes(cv::Mat inpImg) {
  *@brief Used for debugging. Draws lines on top of an image
  *@param inpImg is the input image on top of which lines will be drawn
  *@param lines is a vector of four dimensional data structure and contains
- *@param x and y coordinates of start and end points depicting a line
+ *       x and y coordinates of start and end points depicting a line
  *@return input image with overlayed lines
  */
 cv::Mat lanedetector::drawLines(cv::Mat inpImg, std::vector<cv::Vec4i> lines) {
@@ -247,9 +251,9 @@ cv::Mat lanedetector::drawLines(cv::Mat inpImg, std::vector<cv::Vec4i> lines) {
  *@brief Used for debugging. Draws lines on top of an image
  *@param inpImg is the input image on top of which lines will be drawn
  *@param leftLines is a vector of four dimensional data structure and contains
- *@param x and y coordinates of start and end points depicting a line
+ *       x and y coordinates of start and end points depicting a line
  *@param rightLines is a vector of four dimensional data structure and contains
- *@param x and y coordinates of start and end points depicting a line
+ *       x and y coordinates of start and end points depicting a line
  *@return input image with overlayed lines
  */
 cv::Mat lanedetector::drawLines(cv::Mat inpImg,
@@ -273,12 +277,12 @@ cv::Mat lanedetector::drawLines(cv::Mat inpImg,
 // Sort Lanes
 /**
  *@brief Selects only valid lines from all detected lines and sorts them
- *@brief into potentially left lane or right lane based on their slope
+ *       into potentially left lane or right lane based on their slope
  *@param lines is a vector of four dimensional data structure and contains
- *@param x and y coordinates of start and end points depicting a line
+ *       x and y coordinates of start and end points depicting a line
  *@param inpImg is the input image from which these lines have been calculated
  *@return a two dimensional vector of a four dimensional data structure and contains
- *@return x and y coordinates of start and end points depicting a line
+ *        x and y coordinates of start and end points depicting a line
  */
 std::vector<std::vector<cv::Vec4i>> lanedetector::sortLanes(
     std::vector<cv::Vec4i> lines, cv::Mat inpImg) {
@@ -308,8 +312,6 @@ std::vector<std::vector<cv::Vec4i>> lanedetector::sortLanes(
       validLines.push_back(line);
     }
   }
-  // just checking how many valid lines we got
-//  std::cout << "Valid lines len " << validLines.size() << std::endl;
 
   size_t idx = 0;
   // Split the lines into right and left lines
@@ -338,12 +340,12 @@ std::vector<std::vector<cv::Vec4i>> lanedetector::sortLanes(
 // Compute Fit Line
 /**
  *@brief performing basic regression to fit a line for left lane and
- *@brief right lane from all the sorted lines output from sortLanes function
+ *       right lane from all the sorted lines output from sortLanes function
  *@param validLines is a two dimensional vector of a four dimensional data structure
- *@param and contains x and y coordinates of start and end points depicting a line
+ *       and contains x and y coordinates of start and end points depicting a line
  *@param inpImg is the input images on which the lines were computed
  *@return a vector of four points representing the final two lines for left
- *@return and right respectively
+ *        and right respectively
  */
 
 std::vector<cv::Point> lanedetector::computeFitLine(
@@ -419,8 +421,8 @@ std::vector<cv::Point> lanedetector::computeFitLine(
 // Predict Turn
 /**
  *@brief Predicts turn based on the location of the vanishing point. Vanishing
- *@brief point is computed by finding the intersection of the final left lane
- *@brief and right lane
+ *       point is computed by finding the intersection of the final left lane
+ *       and right lane
  *@param None
  *@return direction of predicted turn, "Left", "Straight" or "Right"
  */
@@ -428,6 +430,7 @@ std::string lanedetector::predictTurn() {
   std::string turn;
   // vanishing point
   double vanPt;
+  // cast as double for calculation
   vanPt = static_cast<double>(((rightSlope * rightBias.x)
       - (leftSlope * leftBias.x) - rightBias.y + leftBias.y)
       / (rightSlope - leftSlope));
@@ -445,10 +448,10 @@ std::string lanedetector::predictTurn() {
 // Draw Polygon
 /**
  *@brief Augments the detected lane with a colored polygon for better
- *@brief visualization. Also adds text received from the predictTurn function
+ *       visualization. Also adds text received from the predictTurn function
  *@param inpImg is the input image which will be overlayed with the augmented box
  *@param finalPoly is the set (or vector) of points depicting the final polygon
- *@param computed from the left and right lane
+ *       computed from the left and right lane
  *@param turn is the output that was extracted from predictTurn function
  *@return None
  */
@@ -457,21 +460,25 @@ int lanedetector::drawPolygon(cv::Mat inpImg, std::vector<cv::Point> finalPoly,
   cv::Mat outImg;
   inpImg.copyTo(outImg);
   std::vector<cv::Point> filledPoly;
-
+  // push points in clockwise order as required by cv::filledConvexPoly
   filledPoly.push_back(finalPoly[2]);
   filledPoly.push_back(finalPoly[0]);
   filledPoly.push_back(finalPoly[1]);
   filledPoly.push_back(finalPoly[3]);
 
   cv::fillConvexPoly(outImg, filledPoly, cv::Scalar(71, 99, 255), CV_AA, 0);
+  // add the translucent apprearence to the augmented lane
   cv::addWeighted(outImg, 0.45, inpImg, 1.0 - 0.45, 0.0, inpImg);
   cv::putText(inpImg, turn, cv::Point(610, 610),
               cv::FONT_HERSHEY_COMPLEX_SMALL,
               0.8, cv::Scalar(0, 255, 0), 1, CV_AA);
+  // we don't need to draw lines if we have the polygon
+  // leaving for debugging purposes
 //  cv::line(outImg, finalPoly[0], finalPoly[1], cv::Scalar(71, 99, 255), 7,
 //           CV_AA);
 //  cv::line(outImg, finalPoly[2], finalPoly[3], cv::Scalar(71, 99, 255), 7,
 //           CV_AA);
+  // open the final window for output
   cv::namedWindow("Output", CV_WINDOW_AUTOSIZE);
   cv::imshow("Output", inpImg);
 

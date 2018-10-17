@@ -26,7 +26,7 @@
  *@file test.cpp
  *@author Sarthak Mahajan
  *@brief All tests are defined here.
- *@brief Primarily to check image channels and predicted turns.
+ *       Primarily to check image channels and predicted turns.
  */
 #include <iostream>
 #include <gtest/gtest.h>

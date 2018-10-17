@@ -26,8 +26,8 @@
  *@file main.cpp
  *@author Sarthak Mahajan
  *@brief main block which reads a video source and detects lanes from it
- *@brief by creating an object of the lanedetector class and calling the
- *@brief methods that facilitate this process
+ *       by creating an object of the lanedetector class and calling the
+ *       methods that facilitate this process
  */
 
 #include <iostream>
