@@ -38,8 +38,7 @@
 TEST(channels, testNumOfChannelsReturned) {
   lanedetector testObj;
   cv::Mat testImg, retImg;
-  std::string imgPath =
-      "/home/sarthak/Downloads/LaneDetection/DataSet/images/image001.png";
+  std::string imgPath("test.png");
   testImg = cv::imread(imgPath, cv::IMREAD_COLOR);
   retImg = testObj.grayImage(testImg);
   EXPECT_EQ(1, retImg.channels());
