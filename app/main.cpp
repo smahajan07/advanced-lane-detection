@@ -31,10 +31,13 @@
  */
 
 #include <iostream>
+#include <chrono>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 # include "../include/lanedetector.hpp"
 #define NUMFRAMES 500
+
+using namespace std::chrono;
 
 int main() {
   // TODO(smahajan07): make params into yml and then import
@@ -62,7 +65,8 @@ int main() {
   int fCount = 0;
 
   // Provide path for test image, maybe change through argument
-  std::string vidPath("project_video.mp4");
+  std::string vidPath(
+      "/home/sarthak/Downloads/LaneDetection/DataSet/project_video.mp4");
   // open video
   cv::VideoCapture cap(vidPath);
   // check if video opened
@@ -72,6 +76,7 @@ int main() {
   while (fCount < NUMFRAMES) {
     if (!cap.read(orgImg))
       break;
+    auto start = high_resolution_clock::now();
     // actions
     // call undistort func
     undImg = obj.undistortImage(orgImg, cameraMatrix, distCoeff);
@@ -95,6 +100,10 @@ int main() {
     turn = obj.predictTurn();
     // call draw polygon
     obj.drawPolygon(undImg, finalPoly, turn);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    std::cout << "Time taken by process: " << duration.count()
+              << " microseconds" << std::endl;
     ++fCount;
     cv::waitKey(15);
   }
