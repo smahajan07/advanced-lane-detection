@@ -55,21 +55,22 @@ class lanedetector {
   lanedetector();
   lanedetector(bool, bool, double, double, cv::Point, cv::Point, double,
                double);
-  cv::Mat undistortImage(cv::Mat, cv::Mat, cv::Mat);
-  cv::Mat preprocessImage(cv::Mat);
-  cv::Mat grayImage(cv::Mat);
-  cv::Mat detectEdges(cv::Mat);
-  cv::Mat extractROI(cv::Mat, cv::Rect);
-  cv::Mat createMask(cv::Mat);
-  cv::Mat perspectiveTransform(cv::Mat);
-  std::vector<cv::Vec4i> detectLanes(cv::Mat);
-  cv::Mat drawLines(cv::Mat, std::vector<cv::Vec4i>);
-  cv::Mat drawLines(cv::Mat, std::vector<cv::Vec4i>, std::vector<cv::Vec4i>);
-  int drawPolygon(cv::Mat, std::vector<cv::Point>, std::string);
+  cv::Mat undistortImage(const cv::Mat, const cv::Mat, const cv::Mat);
+  cv::Mat preprocessImage(const cv::Mat);
+  cv::Mat grayImage(const cv::Mat);
+  cv::Mat detectEdges(const cv::Mat);
+  cv::Mat extractROI(const cv::Mat, const cv::Rect);
+  cv::Mat createMask(const cv::Mat);
+  cv::Mat perspectiveTransform(const cv::Mat);
+  std::vector<cv::Vec4i> detectLanes(const cv::Mat);
+  cv::Mat drawLines(const cv::Mat, std::vector<cv::Vec4i>);
+  cv::Mat drawLines(const cv::Mat, std::vector<cv::Vec4i>,
+                    std::vector<cv::Vec4i>);
+  int drawPolygon(const cv::Mat, std::vector<cv::Point>, std::string);
   std::vector<std::vector<cv::Vec4i>> sortLanes(std::vector<cv::Vec4i>,
-                                                cv::Mat);
+                                                const cv::Mat);
   std::vector<cv::Point> computeFitLine(std::vector<std::vector<cv::Vec4i>>,
-                                        cv::Mat);
+                                        const cv::Mat);
   std::string predictTurn();
 };
 
