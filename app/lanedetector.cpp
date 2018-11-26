@@ -94,8 +94,9 @@ lanedetector::lanedetector(bool _leftLaneF, bool _rightLaneF, double _leftSlope,
  *       undistort the image
  *@return undistorted image
  */
-cv::Mat lanedetector::undistortImage(cv::Mat inpImg, cv::Mat cameraMatrix,
-                                     cv::Mat distCoeff) {
+cv::Mat lanedetector::undistortImage(const cv::Mat inpImg,
+                                     const cv::Mat cameraMatrix,
+                                     const cv::Mat distCoeff) {
   cv::Mat outImg;
   cv::undistort(inpImg, outImg, cameraMatrix, distCoeff);
 
@@ -108,7 +109,7 @@ cv::Mat lanedetector::undistortImage(cv::Mat inpImg, cv::Mat cameraMatrix,
  *@param inpImg is the input image which needs to be smoothened
  *@return blurred or smooth image after denoising
  */
-cv::Mat lanedetector::preprocessImage(cv::Mat inpImg) {
+cv::Mat lanedetector::preprocessImage(const cv::Mat inpImg) {
   cv::Mat outImg;
   cv::GaussianBlur(inpImg, outImg, cv::Size(3, 3), 0, 0);
 
@@ -121,7 +122,7 @@ cv::Mat lanedetector::preprocessImage(cv::Mat inpImg) {
  *@param inpImg that needs to be converted to grayscale
  *@return grayscale image
  */
-cv::Mat lanedetector::grayImage(cv::Mat inpImg) {
+cv::Mat lanedetector::grayImage(const cv::Mat inpImg) {
   cv::Mat outImg;
   cv::cvtColor(inpImg, outImg, cv::COLOR_BGR2GRAY);
 
@@ -136,7 +137,7 @@ cv::Mat lanedetector::grayImage(cv::Mat inpImg) {
  *@param inpImg is a grayscale image
  *@return image with extracted edges
  */
-cv::Mat lanedetector::detectEdges(cv::Mat inpImg) {
+cv::Mat lanedetector::detectEdges(const cv::Mat inpImg) {
   cv::Mat outImg;
   Canny(inpImg, outImg, 50, 100, 3);
   // adding dilation to see if results improve
@@ -172,7 +173,7 @@ cv::Mat lanedetector::detectEdges(cv::Mat inpImg) {
  *@param inpImg is the input image that we need to mask to bring out only a ROI
  *@return masked image with dimensions same as input image
  */
-cv::Mat lanedetector::createMask(cv::Mat inpImg) {
+cv::Mat lanedetector::createMask(const cv::Mat inpImg) {
   cv::Mat outImg;
   cv::Mat mask = cv::Mat::zeros(inpImg.size(), inpImg.type());
   // Similar to extracting a region of interest, we are creating
@@ -193,7 +194,7 @@ cv::Mat lanedetector::createMask(cv::Mat inpImg) {
  *@param inpImg is the input image which needs to projected in top view
  *@return warped image (in the top view)
  */
-cv::Mat lanedetector::perspectiveTransform(cv::Mat inpImg) {
+cv::Mat lanedetector::perspectiveTransform(const cv::Mat inpImg) {
   cv::Mat outImg;
   cv::Point2f inpQuad[4], outQuad[4];
   cv::Mat lambda(2, 4, CV_32FC1);
@@ -223,7 +224,7 @@ cv::Mat lanedetector::perspectiveTransform(cv::Mat inpImg) {
  *@return a vector of a four dimensional data structure which holds the
  *        x and y coordinates of the start and end point of a line
  */
-std::vector<cv::Vec4i> lanedetector::detectLanes(cv::Mat inpImg) {
+std::vector<cv::Vec4i> lanedetector::detectLanes(const cv::Mat inpImg) {
   std::vector<cv::Vec4i> lines;
   cv::HoughLinesP(inpImg, lines, 1, CV_PI / 180, 20, 20, 30);
 
@@ -289,7 +290,7 @@ std::vector<cv::Vec4i> lanedetector::detectLanes(cv::Mat inpImg) {
  *        x and y coordinates of start and end points depicting a line
  */
 std::vector<std::vector<cv::Vec4i>> lanedetector::sortLanes(
-    std::vector<cv::Vec4i> lines, cv::Mat inpImg) {
+    std::vector<cv::Vec4i> lines, const cv::Mat inpImg) {
   // first we need to select valid lines based on their slope
   // then segregate into left and right lines respectively
   std::vector<std::vector<cv::Vec4i>> output(2);
@@ -353,7 +354,7 @@ std::vector<std::vector<cv::Vec4i>> lanedetector::sortLanes(
  */
 
 std::vector<cv::Point> lanedetector::computeFitLine(
-    std::vector<std::vector<cv::Vec4i>> validLines, cv::Mat inpImg) {
+    std::vector<std::vector<cv::Vec4i>> validLines, const cv::Mat inpImg) {
   // First collect points on right and left lanes
   // Then use cv::fitLine to compute a best fit line for these points
   // then we can simply extrapolate these points acc to our need
@@ -459,7 +460,8 @@ std::string lanedetector::predictTurn() {
  *@param turn is the output that was extracted from predictTurn function
  *@return None
  */
-int lanedetector::drawPolygon(cv::Mat inpImg, std::vector<cv::Point> finalPoly,
+int lanedetector::drawPolygon(const cv::Mat inpImg,
+                              std::vector<cv::Point> finalPoly,
                 std::string turn) {
   cv::Mat outImg;
   inpImg.copyTo(outImg);
