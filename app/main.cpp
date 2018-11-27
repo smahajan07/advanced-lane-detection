@@ -34,7 +34,7 @@
 #include <chrono>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
-# include "../include/lanedetector.hpp"
+#include "../include/lanedetector.hpp"
 #define NUMFRAMES 500
 
 using namespace std::chrono;
@@ -65,8 +65,7 @@ int main() {
   int fCount = 0;
 
   // Provide path for test image, maybe change through argument
-  std::string vidPath(
-      "/home/sarthak/Downloads/LaneDetection/DataSet/project_video.mp4");
+  std::string vidPath("project_video.mp4");
   // open video
   cv::VideoCapture cap(vidPath);
   // check if video opened
