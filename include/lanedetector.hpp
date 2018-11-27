@@ -39,8 +39,9 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
+#include "../include/preProcess.hpp"
 
-class lanedetector {
+class lanedetector : public preProcess {
  private:
   bool leftLaneF;  // flag for whether left lane is detected or not
   bool rightLaneF;  // flag for whether right lane is detected or not
@@ -55,9 +56,6 @@ class lanedetector {
   lanedetector();
   lanedetector(bool, bool, double, double, cv::Point, cv::Point, double,
                double);
-  cv::Mat undistortImage(const cv::Mat, const cv::Mat, const cv::Mat);
-  cv::Mat preprocessImage(const cv::Mat);
-  cv::Mat grayImage(const cv::Mat);
   cv::Mat detectEdges(const cv::Mat);
   cv::Mat extractROI(const cv::Mat, const cv::Rect);
   cv::Mat createMask(const cv::Mat);

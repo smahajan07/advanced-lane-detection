@@ -81,54 +81,6 @@ lanedetector::lanedetector(bool _leftLaneF, bool _rightLaneF, double _leftSlope,
   vanPtThresh = _vanPtThresh;
 }
 
-// Undistortion
-/**
- *@brief Due to radial distortion, straight lines appear as curved.
- *       This function undistorts the input image provided the intrinsic
- *       camera paramters. OpenCV provides an inbuilt function to perform
- *       this operation.
- *@param inpImg is the input image that needs to be un distorted
- *@param cameraMatrix is an intrinsic camera parameter with focal length
- *       and optical center values
- *@param distCoeff are the distortion coefficients and are required to
- *       undistort the image
- *@return undistorted image
- */
-cv::Mat lanedetector::undistortImage(const cv::Mat inpImg,
-                                     const cv::Mat cameraMatrix,
-                                     const cv::Mat distCoeff) {
-  cv::Mat outImg;
-  cv::undistort(inpImg, outImg, cameraMatrix, distCoeff);
-
-  return outImg;
-}
-
-// Pre-Process
-/**
- *@brief Denoise or smoothen image by applying a Gaussian filter
- *@param inpImg is the input image which needs to be smoothened
- *@return blurred or smooth image after denoising
- */
-cv::Mat lanedetector::preprocessImage(const cv::Mat inpImg) {
-  cv::Mat outImg;
-  cv::GaussianBlur(inpImg, outImg, cv::Size(3, 3), 0, 0);
-
-  return outImg;
-}
-
-// Gray Image
-/**
- *@brief convert a BGR image (three channels) to grayscale (single channel)
- *@param inpImg that needs to be converted to grayscale
- *@return grayscale image
- */
-cv::Mat lanedetector::grayImage(const cv::Mat inpImg) {
-  cv::Mat outImg;
-  cv::cvtColor(inpImg, outImg, cv::COLOR_BGR2GRAY);
-
-  return outImg;
-}
-
 // Detect Edges
 /**
  *@brief Detect edges in an gray scale image. Since the ultimate objective
