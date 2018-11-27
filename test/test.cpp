@@ -34,13 +34,14 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
 #include "../include/lanedetector.hpp"
+#include "../include/preProcess.hpp"
 
 TEST(channels, testNumOfChannelsReturned) {
-  lanedetector testObj;
+  preProcess helperObj;
   cv::Mat testImg, retImg;
   std::string imgPath("test.png");
   testImg = cv::imread(imgPath, cv::IMREAD_COLOR);
-  retImg = testObj.grayImage(testImg);
+  retImg = helperObj.grayImage(testImg);
   EXPECT_EQ(1, retImg.channels());
 }
 
