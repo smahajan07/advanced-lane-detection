@@ -82,3 +82,22 @@ cv::Mat preProcess::grayImage(const cv::Mat inpImg) {
   return outImg;
 }
 
+// Performs all operations
+/**
+ *@brief It calls the two main preprocessing functions
+ *@param imgPath path for input image
+ *@return 1 if success, 0 otherwise
+ */
+int preProcess::performAllOps(const std::string imgPath) {
+  cv::Mat testImg = cv::imread(imgPath, cv::IMREAD_COLOR);
+  cv::Mat ppImg, grayImg;
+  ppImg = preprocessImage(testImg);
+  grayImg = grayImage(ppImg);
+  if (countNonZero(grayImg) < 1) {
+    return 0;
+  }
+  return 1;
+}
+
+preProcess::~preProcess() {
+}

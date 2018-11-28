@@ -41,12 +41,12 @@
 #include "opencv2/opencv.hpp"
 
 class preProcess {
- private:
-
  public:
-  cv::Mat undistortImage(const cv::Mat, const cv::Mat, const cv::Mat);
-  cv::Mat preprocessImage(const cv::Mat);
-  cv::Mat grayImage(const cv::Mat);
+  virtual ~preProcess();
+  virtual cv::Mat undistortImage(const cv::Mat, const cv::Mat, const cv::Mat);
+  virtual cv::Mat preprocessImage(const cv::Mat);
+  virtual cv::Mat grayImage(const cv::Mat);
+  virtual int performAllOps(const std::string);
 };
 
 #endif  // INCLUDE_PREPROCESS_HPP_
