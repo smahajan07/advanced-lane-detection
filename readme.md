@@ -15,6 +15,15 @@ For this project we will focus on the computer vision aspect of lane detection. 
 
 The source code is in modern C++ and please raise an issue or request a PR if you wish to add features, recommend changes or report a bug. The build system used is Cmake in order to facilitate cross platform builds. The project also uses the OpenCV library as a dependency, so make sure it is installed before running the project and if not, please follow the provided instructions to do so.
 
+## _[New] Google Mock Test_
+
+Google Mock is a framework that let's us create a mock class using macros. It can help you derive better designs of your system and write better tests.
+
+So for experimental purpose, the class structure used in this repository is modified and now we have a base class called ``` preProcess``` and a derived class called ```lanedetector```. So now a mock class was created for the base class and a google mock test was written to test this interface.
+
+Updated UML diagram have been added in the UML directory.
+Instruction to run the tests can be found below.
+
 ## Installation
 
 * Build and run demo and unit tests (Only if OpenCV is installed, else install OpenCV first by following the steps to install OpenCV)
@@ -29,6 +38,7 @@ wget -O test.png "https://drive.google.com/uc?export=download&id=14rU9upKeVllUYN
 cmake ..
 make
 Run the demo: ./app/shell-app
+Run the tests: ./test/cpp-test
 ```
 
 * Steps to install OpenCV, if not installed already
