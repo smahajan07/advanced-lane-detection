@@ -28,13 +28,15 @@
  *@brief All tests are defined here.
  *       Primarily to check image channels and predicted turns.
  */
-#include <iostream>
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
+#include <iostream>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
 #include "../include/lanedetector.hpp"
 #include "../include/preProcess.hpp"
+#include "include/mockpreProcess.hpp"
 
 TEST(channels, testNumOfChannelsReturned) {
   preProcess helperObj;
@@ -55,4 +57,12 @@ TEST(turns, checkTurnDirectionRight) {
   lanedetector testObj(true, true, 1.5, 1.5, cv::Point(200, 0),
                        cv::Point(400, 0), 640, 12);
   EXPECT_EQ("RIGHT", testObj.predictTurn());
+}
+
+TEST(PainterTest, CanDrawSomething) {
+  std::string imgPath("test.png");
+  mockpreProcess mockObj;
+  EXPECT_CALL(mockObj, performAllOps(imgPath)).Times(1).WillOnce(
+      ::testing::Return(1));
+  mockObj.performAllOps(imgPath);
 }
