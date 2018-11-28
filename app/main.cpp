@@ -31,13 +31,9 @@
  */
 
 #include <iostream>
-#include <chrono>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "../include/lanedetector.hpp"
-#define NUMFRAMES 500
-
-using namespace std::chrono;
 
 int main() {
   // TODO(smahajan07): make params into yml and then import
@@ -54,6 +50,7 @@ int main() {
   // Creating object of lane detector class
   lanedetector obj;
   // create all variables
+  int NUMFRAMES = 500;
   cv::Mat orgImg;
   cv::Mat undImg, ppImg, grayImg, edgeImg;
   cv::Mat maskedImg;
@@ -75,7 +72,6 @@ int main() {
   while (fCount < NUMFRAMES) {
     if (!cap.read(orgImg))
       break;
-    auto start = high_resolution_clock::now();
     // actions
     // call undistort func
     undImg = obj.undistortImage(orgImg, cameraMatrix, distCoeff);
@@ -99,10 +95,6 @@ int main() {
     turn = obj.predictTurn();
     // call draw polygon
     obj.drawPolygon(undImg, finalPoly, turn);
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
-    std::cout << "Time taken by process: " << duration.count()
-              << " microseconds" << std::endl;
     ++fCount;
     cv::waitKey(15);
   }
