@@ -29,7 +29,7 @@ Instruction to run the tests can be found below.
 * Build and run demo and unit tests (Only if OpenCV is installed, else install OpenCV first by following the steps to install OpenCV)
 
 ```
-git clone git@github.com:smahajan07/advanced-lane-detection.git
+git clone https://github.com/smahajan07/advanced-lane-detection.git
 cd <path to repository>
 mkdir build
 cd build
