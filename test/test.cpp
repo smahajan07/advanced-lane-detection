@@ -59,7 +59,7 @@ TEST(turns, checkTurnDirectionRight) {
   EXPECT_EQ("RIGHT", testObj.predictTurn());
 }
 
-TEST(PainterTest, CanDrawSomething) {
+TEST(preProcess, testPreProcessFuncs) {
   std::string imgPath("test.png");
   mockpreProcess mockObj;
   EXPECT_CALL(mockObj, performAllOps(imgPath)).Times(1).WillOnce(
