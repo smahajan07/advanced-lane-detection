@@ -24,6 +24,8 @@ So for experimental purpose, the class structure used in this repository is modi
 Updated UML diagram have been added in the UML directory.
 Instruction to run the tests can be found below.
 
+Note:  Since most functions here were of opencv, it was a little cumbersome in the beginning but the concepts of google mock use became much clear after reading the documentation available here - [Cheatsheet](https://github.com/google/googlemock/blob/master/googlemock/docs/CheatSheet.md). I implemented it using a very basic class of simple functions and tests used there were scalable in general, but since it required more time to make it presentable I'm going to use this as my final submission.
+
 ## Installation
 
 * Build and run demo and unit tests (Only if OpenCV is installed, else install OpenCV first by following the steps to install OpenCV)
